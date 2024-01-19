@@ -8,10 +8,10 @@ module main() {
     }
 }
 
-linear_extrude(height=1.5) main();
+linear_extrude(height=1.5) rotate([0, 180, 0]) main();
 
 module hook() {
-    translate([-20/2+1.5,10]) square([3,50], center=true);
+    square([3,45], center=true);
 }
 
-linear_extrude(height=15) hook();
+translate([20/2-1.5,10]) linear_extrude(height=15) hook();
