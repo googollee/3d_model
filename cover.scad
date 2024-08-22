@@ -8,20 +8,10 @@ difference() {
     translate([13, 0, 0])
     linear_extrude(height=5)
     square([6, 20], center=true);
-    
-    translate([15.2, 15, 2.5])
-    rotate(v=[1, 0, 0], a=90)
-    linear_extrude(height=5.4)
-    circle(r=2.5, $fn=50);
-
-    translate([15.2, -9.6, 2.5])
-    rotate(v=[1, 0, 0], a=90)
-    linear_extrude(height=5.4)
-    circle(r=2.5, $fn=50);
 
     translate([20, 0, 0])
-    linear_extrude(height=5)
-    square([10, 30], center=true);
+    linear_extrude(height=10)
+    square([10, 40], center=true);
   }
 
   translate([10, 10.4, 2.5])
