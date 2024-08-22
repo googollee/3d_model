@@ -5,11 +5,21 @@ difference() {
     linear_extrude(height = 20)
     circle(r=2.5, $fn=50);
 
-    translate([12.5, 0, 0])
+    translate([13, 0, 0])
     linear_extrude(height=5)
-    square([5, 20], center=true);
+    square([6, 20], center=true);
+    
+    translate([15.2, 15, 2.5])
+    rotate(v=[1, 0, 0], a=90)
+    linear_extrude(height=5.4)
+    circle(r=2.5, $fn=50);
 
-    translate([18, 0, 0])
+    translate([15.2, -9.6, 2.5])
+    rotate(v=[1, 0, 0], a=90)
+    linear_extrude(height=5.4)
+    circle(r=2.5, $fn=50);
+
+    translate([20, 0, 0])
     linear_extrude(height=5)
     square([10, 30], center=true);
   }
@@ -30,19 +40,19 @@ union() {
     linear_extrude(height = 5)
     square([12, 30.4], center=true);
 
-    translate([10, 0, -1])
+    translate([8, 0, -1])
     linear_extrude(height = 7)
     circle(r=10.4, $fn=50);
   }
 
-  translate([10, 15.3, 2.5])
+  translate([10, 15.2, 2.5])
   rotate(v=[1, 0, 0], a=90)
-  linear_extrude(height = 5)
+  linear_extrude(height = 4.9)
   circle(r=2.5, $fn=50);
 
   translate([10, -10.3, 2.5])
   rotate(v=[1, 0, 0], a=90)
-  linear_extrude(height = 5)
+  linear_extrude(height = 4.9)
   circle(r=2.5, $fn=50);
 
   translate([10, 10.3, 2.5])
