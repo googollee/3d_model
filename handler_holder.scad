@@ -6,10 +6,10 @@ translate([0, 5, 15])
 cube([50, 10, 30], center = true);
 
 translate([20, 9.999, 5])
-branch(10, 30, 25);
+branch(10, 50, 25);
 
 translate([-20, 9.999, 5])
-branch(10, 30, 25);
+branch(10, 50, 25);
 
 module branch(x, y, z) {
   translate([0, 0, 5])
