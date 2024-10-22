@@ -15,7 +15,7 @@ difference() {
     cube([16, 10, 10], center=true);
 }
 
-translate([0, 10, 0.4])
+translate([0, 11, 0.4])
 rotate(a=90, v=[0, 1, 0])
 cylinder(r=1.1, h=20, center=true);
 
@@ -32,8 +32,8 @@ difference() {
     cube([16, 10, 11], center=true);
 }
 
-translate([0, -8.5, 7])
+translate([0, -9, 7])
 minkowski() {
-    cube([12, 1, 0.01], center=true);
+    cube([12, 3, 0.01], center=true);
     sphere(r=1);
 }
