@@ -17,12 +17,12 @@ difference() {
 
 translate([0, 11, 0.4])
 rotate(a=90, v=[0, 1, 0])
-cylinder(r=1.1, h=20, center=true);
+cylinder(r=1, h=20, center=true);
 
-translate([0, -10.5, 5])
+translate([0, -10.5, 4])
 difference() {
     minkowski() {
-        cube([20, 1, 11], center=true);
+        cube([20, 1, 9], center=true);
         
         rotate(a=90, v=[0, 1, 0])
         cylinder(r=2,h=1,center=true);
