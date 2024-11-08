@@ -7,8 +7,8 @@ difference() {
   circle(d=59, $fn=200);
 }
 
-translate([34, 40, -10])
-linear_extrude(height = 20)
+translate([34, 40, -3])
+linear_extrude(height = 13)
 difference() {
   circle(d=69, $fn=200);
   circle(d=56, $fn=200);
