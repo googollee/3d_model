@@ -1,17 +1,20 @@
 $fn=50;
 
-translate([-34, 40, 0])
+translate([-38, 43, 0])
 linear_extrude(height = 10)
 difference() {
   circle(d=69, $fn=200);
-  circle(d=59, $fn=200);
+  circle(d=60, $fn=200);
 }
 
-translate([34, 40, -3])
+translate([-5, 45, 0])
+cube([15, 5, 10]);
+
+translate([39, 40, -3])
 linear_extrude(height = 13)
 difference() {
   circle(d=69, $fn=200);
-  circle(d=56, $fn=200);
+  circle(d=60, $fn=200);
 }
 
 translate([35, 0, 0])
@@ -27,43 +30,47 @@ union() {
   }
 }
 
-translate([76, 55, 0])
+translate([83, 55, 0])
 difference() {
   union() {
-    linear_extrude(height=50)
+    linear_extrude(height=45)
     difference() {
       circle(d=25);
       circle(d=15);
     }
 
-    translate([0, 0, 50])
+    translate([0, 0, 44.99])
     difference() {
-      linear_extrude(height=10)
+      linear_extrude(height=15)
       circle(d=25);
 
       translate([0, 0, 5])
-      cylinder(h=15, r1=8.7, r2=1.2, center=true);
+      cylinder(h=20, r1=10, r2=4, center=true);
     }
   }
 
   rotate(v=[0,0,1], a=90)
+  translate([0, -2.5, 0])
+  cube([25, 5, 35]);
+
+  rotate(v=[0,0,1], a=90)
   translate([0, -5, 10])
-  cube([25, 10, 40]);
+  cube([25, 10, 35]);
 
   rotate(v=[0,0,1], a=0)
   translate([0, -5, 10])
-  cube([25, 10, 40]);
+  cube([25, 10, 35]);
 
   rotate(v=[0,0,1], a=180)
   translate([0, -5, 10])
-  cube([25, 10, 40]);
-  
+  cube([25, 10, 35]);
+
   rotate(v=[0,0,1], a=270)
   translate([0, -5, 10])
-  cube([25, 10, 40]);  
+  cube([25, 10, 35]);
 }
 
-translate([90, 26, 15])
+translate([97, 26, 15])
 union() {
   difference() {
     cube([50, 40, 30], center=true);
