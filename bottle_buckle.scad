@@ -31,5 +31,5 @@ circle(d=37.5 - 2);
 }
 
 translate([24, 0, 7])
-cube([50, 0.2, 15], center=true);
+cube([50, 0.4, 15], center=true);
 }
