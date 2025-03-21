@@ -83,7 +83,7 @@ union() {
   cube([50, 20, 5], center=true);
 }
 
-include <./ikea_skadis_hookup.scad>
+include <./ikea_skadis_hookup.scad.fn>
 translate([15, -8, 0])
 hooker();
 
