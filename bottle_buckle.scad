@@ -22,10 +22,10 @@ difference() {
 union() {
     translate([-37.5/2, 0, 0])
     square([20, 30], center=true);
-    circle(d=37.5);
+    circle(d=38.5);
 }
 
-circle(d=37.5 - 2);
+circle(d=37.7);
 }
 
 }
