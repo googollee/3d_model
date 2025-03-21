@@ -8,9 +8,9 @@ difference() {
 }
 
 translate([-5, 45, 0])
-cube([15, 5, 10]);
+cube([14, 5, 10]);
 
-translate([39, 40, -3])
+translate([39, 41, -3])
 linear_extrude(height = 13)
 difference() {
   circle(d=69, $fn=200);
