@@ -1,3 +1,5 @@
+$fn=60;
+
 module half() {
 polygon(
     [[0, 15-3.5], [7.6, 15], [15, 15], [14, 13], [27, 15-1.5], [27, 15], [35, 15], 
@@ -22,7 +24,7 @@ difference() {
 union() {
     translate([-37.5/2, 0, 0])
     square([20, 30], center=true);
-    circle(d=38.5);
+    circle(d=39.5);
 }
 
 circle(d=37.7);
