@@ -9,29 +9,36 @@ polygon(
 difference() {
 
 union() {
-linear_extrude(height=6)
+
+rotate([0, 60, 0])
+union() {
+translate([-54.9, 0, 1.4])
+linear_extrude(height=6.5)
 union() {
     half();     
     mirror([0,1,0]) half();
 }
 
-translate([35, 0, 0])
-rotate([0, -30, 0])
-linear_extrude(height=6)
-translate([37.5/2+10, 0, 0])
+translate([-10, 0, 0])
+linear_extrude(height=10)
+square([20, 42], center=true);
+}
+
+translate([30, 0, 0])
+linear_extrude(height=10)
 difference() {
+    union() {
+        circle(d=42);
+        
+        translate([-15, 0])
+        square([30, 42], center=true);
+    }
 
-union() {
-    translate([-37.5/2, 0, 0])
-    square([20, 30], center=true);
-    circle(d=39.5);
+    circle(d=37.7);
 }
 
-circle(d=37.7);
 }
 
-}
-
-translate([24, 0, 7])
-cube([50, 0.4, 15], center=true);
+translate([-15, 0, 25])
+cube([60, 1, 60], center=true);
 }
