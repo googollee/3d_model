@@ -1,5 +1,5 @@
 $fn=50;
-hole_d = 7;
+hole_d = 6;
 distance = 40;
 height = 5;
 thickness = 1;
