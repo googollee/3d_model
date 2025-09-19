@@ -23,10 +23,5 @@ circle(r=round_r);
 }
 }
 
-column_x = (total_width/2-column)/2;
 translate([0, depth_pc/2+wall/2, 0])
-cube([wall, depth_air_duct, height], center=true);
-translate([column_x, depth_pc/2+wall/2, 0])
-cube([wall, depth_air_duct, height], center=true);
-translate([-column_x, depth_pc/2+wall/2, 0])
 cube([wall, depth_air_duct, height], center=true);
