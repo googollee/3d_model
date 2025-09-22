@@ -4,10 +4,10 @@ module main_body(thickness) {
   rotate([90, 0, 0])
   linear_extrude(height=thickness, center=true)
   hull() {
-    translate([125/2-10, 45-10])
+    translate([128/2-6-10, 45-10])
     circle(r=10);
       
-    polygon([[130/2, 0], [-130/2, 0], [-130/2, 45]]);
+    polygon([[128/2, 0], [-128/2, 0], [-128/2, 45]]);
   }
 }
 
@@ -15,18 +15,18 @@ module out() {
   difference() {
     main_body(190);
 
-    translate([0, 0, -0.5])
-    scale([0.95, 0.96, 0.95])
-    main_body(190);
+    translate([-6.55, 0, 18])
+    cube([108.5, 186, 39], center=true);
 
-    translate([0, 0, -1])
-    scale([0.8, 1.1, 0.8])
-    main_body(190);
+    translate([62, 0, 0])
+    rotate([0, 69, 0])
+    translate([-20, 0, -10])
+    cube([40, 186, 20], center=true);
 
-    translate([57, 0, 0])
-    rotate([0, -23.47, 0])
-    translate([0, 0, 5])
-    cube([10, 192, 52], center=true);
+    translate([61.2, 0, -0.1])
+    rotate([90, 0, 0])
+    linear_extrude(height=200, center=true)
+    polygon([[0, 0], [-122, 0], [-122, 4.1], [-0.8, 4.1]]);
   }
 
   translate([0, 30, 0])
@@ -37,9 +37,9 @@ module out() {
 }
 
 module column() {
-  translate([0, 0, 5])
+  translate([0, 0, 4])
   difference() {
-    linear_extrude(height=40)
+    linear_extrude(height=41)
     hull() {
       translate([15, 0, 0])
       circle(d=10);
@@ -47,12 +47,12 @@ module column() {
     }
 
     translate([0, 0, -0.1])
-    linear_extrude(height=4.1)
-    circle(d=5);
+    linear_extrude(height=4.3)
+    circle(d=5.4);
     
     translate([15, 0, -0.1])
-    linear_extrude(height=4.1)
-    circle(d=5);
+    linear_extrude(height=4.3)
+    circle(d=5.4);
   }
 }
 
@@ -73,23 +73,20 @@ module tank_body() {
 
 difference() {
   union() {
-    translate([65, 0, 0])
+    translate([64, 0, 0])
     out();
 
-    translate([48, 90, 0])
+    translate([48.5, 90, 0])
     column();
     translate([55.5, 80, 25])
     cube([5, 10, 40], center=true);
 
-    translate([48, -90, 0])
+    translate([48.5, -90, 0])
     column();
     translate([55.5, -80, 25])
     cube([5, 10, 40], center=true);
 
     tank_body();
-
-    translate([63, 0, 40])
-    cube([122, 190, 5.1], center=true);
   }
     
   translate([2.8, 0, 2])
@@ -97,10 +94,8 @@ difference() {
   tank_body();
 }
 
-  
-translate([69.2, 90, 2.4])
-cube([112, 20, 4.8], center=true);
+translate([63.5, 90, 1.9])
+cube([120, 20, 4], center=true);
 
-translate([69.2, -90, 2.4])
-cube([112, 20, 4.8], center=true);
-
+translate([63.5, -90, 1.9])
+cube([120, 20, 4], center=true);
