@@ -26,7 +26,7 @@ module out() {
     translate([61.2, 0, -0.1])
     rotate([90, 0, 0])
     linear_extrude(height=200, center=true)
-    polygon([[0, 0], [-122, 0], [-122, 4.1], [-0.8, 4.1]]);
+    polygon([[0, 0], [-122, 0], [-122, 5.1], [-1.15, 5.1]]);
   }
 
   translate([0, 30, 0])
@@ -37,9 +37,9 @@ module out() {
 }
 
 module column() {
-  translate([0, 0, 4])
+  translate([0, 0, 5])
   difference() {
-    linear_extrude(height=41)
+    linear_extrude(height=40)
     hull() {
       translate([15, 0, 0])
       circle(d=10);
@@ -47,11 +47,11 @@ module column() {
     }
 
     translate([0, 0, -0.1])
-    linear_extrude(height=4.3)
+    linear_extrude(height=3.3)
     circle(d=5.4);
     
     translate([15, 0, -0.1])
-    linear_extrude(height=4.3)
+    linear_extrude(height=3.3)
     circle(d=5.4);
   }
 }
@@ -94,8 +94,9 @@ difference() {
   tank_body();
 }
 
-translate([63.5, 90, 1.9])
-cube([120, 20, 4], center=true);
 
-translate([63.5, -90, 1.9])
-cube([120, 20, 4], center=true);
+translate([63.5, 90, 2.4])
+cube([120, 20, 5], center=true);
+
+translate([63.5, -90, 2.4])
+cube([120, 20, 5], center=true);
