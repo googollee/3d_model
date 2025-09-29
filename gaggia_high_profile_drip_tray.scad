@@ -94,9 +94,20 @@ difference() {
   tank_body();
 }
 
+module support() {
+  for (r = [0:45:360]) {
+    rotate([0, 0, r])
+    translate([1, -0.5, 0])
+    cube([8, 1, 4.6]);
+  }
+}
 
-translate([63.5, 90, 2.4])
-cube([120, 20, 5], center=true);
+translate([48.5, 90, 0])
+support();
+translate([48.5+15, 90, 0])
+support();
 
-translate([63.5, -90, 2.4])
-cube([120, 20, 5], center=true);
+translate([48.5, -90, 0])
+support();
+translate([48.5+15, -90, 0])
+support();
