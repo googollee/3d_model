@@ -95,10 +95,10 @@ difference() {
 }
 
 module support() {
-  for (r = [0:45:360]) {
+  for (r = [0:15:360]) {
     rotate([0, 0, r])
-    translate([1, -0.5, 0])
-    cube([8, 1, 4.6]);
+    translate([1, -0.2, 0])
+    cube([5, 0.4, 4.6]);
   }
 }
 
