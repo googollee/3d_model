@@ -26,7 +26,7 @@ module out() {
     translate([61.2, 0, -0.1])
     rotate([90, 0, 0])
     linear_extrude(height=200, center=true)
-    polygon([[0, 0], [-122, 0], [-122, 5.1], [-1.15, 5.1]]);
+    polygon([[0, 0], [-122, 0], [-122, 7], [-2, 7]]);
   }
 
   translate([0, 30, 0])
@@ -92,6 +92,10 @@ difference() {
   translate([2.8, 0, 2])
   scale([0.95, 0.97, 1])
   tank_body();
+
+  translate([125, 0, 0])
+  rotate([0, 90, 0])
+  cylinder(h=10, r=15, center=true);
 }
 
 module support() {
