@@ -13,7 +13,7 @@ module main_body(thickness) {
 
 module out() {
   difference() {
-    main_body(190);
+    main_body(192);
 
     translate([-6.55, 0, 18])
     cube([108.5, 186, 39], center=true);
@@ -37,7 +37,7 @@ module out() {
 }
 
 module column() {
-  translate([0, 0, 5])
+  translate([0, 0, 4.5])
   difference() {
     union() {
       linear_extrude(height=40)
@@ -57,11 +57,11 @@ module column() {
       }
     }
 
-    linear_extrude(height=3.3)
+    linear_extrude(height=3.8)
     circle(d=5.4);
 
     translate([15, 0, 0])
-    linear_extrude(height=3.3)
+    linear_extrude(height=3.8)
     circle(d=5.4);
   }
 }
@@ -69,13 +69,13 @@ module column() {
 module tank_body() {
   translate([57, 0, 41])
   minkowski() {
-    cube([100, 170, 6], center=true);
+    cube([102, 172, 6], center=true);
     cylinder(h=1, r=2, center=true);
   }
   
-  translate([57, 0, 19.5])
+  translate([57, 0, 20])
   minkowski() {
-    cube([72, 137, 38], center=true);
+    cube([78, 148, 39], center=true);
     cylinder(h=1, r=10, center=true);
   }
 }
@@ -112,7 +112,7 @@ module support() {
   for (r = [0:30:360]) {
     rotate([0, 0, r])
     translate([2.5, -0.8, 0])
-    cube([4, 1.6, 4.8]);
+    cube([3, 1.6, 4.3]);
   }
 }
 
