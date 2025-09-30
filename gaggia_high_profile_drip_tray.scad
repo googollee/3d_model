@@ -39,18 +39,28 @@ module out() {
 module column() {
   translate([0, 0, 5])
   difference() {
-    linear_extrude(height=40)
-    hull() {
+    union() {
+      linear_extrude(height=40)
+      circle(d=10);
+
       translate([15, 0, 0])
+      linear_extrude(height=40)
       circle(d=10);
-      circle(d=10);
+
+      translate([0, 0, 1])
+      linear_extrude(height=39)
+      hull() {
+        circle(d=10);
+
+        translate([15, 0, 0])
+        circle(d=10);
+      }
     }
 
-    translate([0, 0, -0.1])
     linear_extrude(height=3.3)
     circle(d=5.4);
-    
-    translate([15, 0, -0.1])
+
+    translate([15, 0, 0])
     linear_extrude(height=3.3)
     circle(d=5.4);
   }
@@ -99,10 +109,10 @@ difference() {
 }
 
 module support() {
-  for (r = [0:10:360]) {
+  for (r = [0:30:360]) {
     rotate([0, 0, r])
-    translate([1, -0.1, 0])
-    cube([7, 0.2, 4.6]);
+    translate([2.5, -0.8, 0])
+    cube([4, 1.6, 4.8]);
   }
 }
 
