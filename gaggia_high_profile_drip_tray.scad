@@ -78,13 +78,13 @@ difference() {
 
     translate([48.5, 90, 0])
     column();
-    translate([55.5, 80, 25])
-    cube([5, 10, 40], center=true);
+    translate([55.5, 80, 26])
+    cube([5, 10, 38], center=true);
 
     translate([48.5, -90, 0])
     column();
-    translate([55.5, -80, 25])
-    cube([5, 10, 40], center=true);
+    translate([55.5, -80, 26])
+    cube([5, 10, 38], center=true);
 
     tank_body();
   }
