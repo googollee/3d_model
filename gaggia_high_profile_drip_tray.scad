@@ -41,19 +41,19 @@ module column() {
   difference() {
     union() {
       linear_extrude(height=40)
-      circle(d=10);
+      circle(d=9.5);
 
       translate([15, 0, 0])
       linear_extrude(height=40)
-      circle(d=10);
+      circle(d=9.5);
 
       translate([0, 0, 1])
       linear_extrude(height=39)
       hull() {
-        circle(d=10);
+        circle(d=9.5);
 
         translate([15, 0, 0])
-        circle(d=10);
+        circle(d=9.5);
       }
     }
 
@@ -111,8 +111,8 @@ difference() {
 module support() {
   for (r = [0:30:360]) {
     rotate([0, 0, r])
-    translate([2.5, -0.8, 0])
-    cube([3, 1.6, 4.3]);
+    translate([2, -0.7, 0])
+    cube([3.5, 1.4, 4.4]);
   }
 }
 
