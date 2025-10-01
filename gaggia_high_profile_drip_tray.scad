@@ -29,11 +29,17 @@ module out() {
     polygon([[0, 0], [-122, 0], [-122, 7], [-2, 7]]);
   }
 
-  translate([0, 30, 0])
-  main_body(3);
+  translate([-5, 80, 36])
+  cube([116, 4, 4], center=true);
 
-  translate([0, -30, 0])
-  main_body(3);
+  translate([-5, -80, 36])
+  cube([116, 4, 4], center=true);
+
+  translate([-5, 30, 36])
+  cube([116, 4, 4], center=true);
+
+  translate([-5, -30, 36])
+  cube([116, 4, 4], center=true);
 }
 
 module column() {
