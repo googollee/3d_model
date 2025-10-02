@@ -16,7 +16,7 @@ module out() {
     main_body(192, 128, 45, 4, 10);
 
     translate([0, 0, -0.001])
-    main_body(186, 122, 37, 4, 0.01);
+    main_body(186, 122, 37, 10, 0.01);
 
     translate([0, 0, -0.001])
     rotate([90, 0, 0])
@@ -39,19 +39,19 @@ module column() {
   difference() {
     union() {
       linear_extrude(height=40)
-      circle(d=9.5);
+      circle(d=10);
 
       translate([15, 0, 0])
       linear_extrude(height=40)
-      circle(d=9.5);
+      circle(d=10);
 
       translate([0, 0, 1])
       linear_extrude(height=39)
       hull() {
-        circle(d=9.5);
+        circle(d=10);
 
         translate([15, 0, 0])
-        circle(d=9.5);
+        circle(d=10);
       }
     }
 
