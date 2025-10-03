@@ -16,7 +16,7 @@ module out() {
     main_body(192, 128, 45, 4, 10);
 
     translate([0, 0, -0.001])
-    main_body(186, 122, 37, 10, 0.01);
+    main_body(186, 122, 37, 8, 0.01);
 
     translate([0, 0, -0.001])
     rotate([90, 0, 0])
@@ -73,8 +73,8 @@ module tank_body() {
   
   translate([57, 0, 20])
   minkowski() {
-    cube([78, 148, 39], center=true);
-    cylinder(h=1, r=10, center=true);
+    cube([88, 158, 39], center=true);
+    cylinder(h=1, r=5, center=true);
   }
 }
 
