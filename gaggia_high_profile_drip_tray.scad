@@ -71,10 +71,11 @@ module tank_body() {
     cylinder(h=1, r=2, center=true);
   }
   
-  translate([57, 0, 20])
+  translate([57, 0, 0])
+  linear_extrude(height=39, scale=1.1)
   minkowski() {
-    cube([88, 158, 39], center=true);
-    cylinder(h=1, r=5, center=true);
+    square([80, 145], center=true);
+    circle(r=5);
   }
 }
 
