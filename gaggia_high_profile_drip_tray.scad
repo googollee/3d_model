@@ -21,7 +21,7 @@ module out() {
     translate([0, 0, -0.001])
     rotate([90, 0, 0])
     linear_extrude(height=200, center=true)
-    polygon([[122/2-2, 7], [122/2, 0], [-122/2+4, 0], [-122/2+4, 7]]);
+    polygon([[122/2-3, 7], [122/2-1, 0], [-122/2+4, 0], [-122/2+4, 7]]);
   }
 
   translate([-2, 80, 36])
@@ -124,3 +124,23 @@ translate([48.5, -90, 0])
 support();
 translate([48.5+15, -90, 0])
 support();
+
+translate([124, 96, 0])
+cube([4, 5, 0.2]);
+translate([100, 100, 0])
+cube([30, 20, 0.2]);
+
+translate([124, -100, 0])
+cube([4, 5, 0.2]);
+translate([100, -120, 0])
+cube([30, 20, 0.2]);
+
+translate([0, 96, 0])
+cube([4, 5, 0.2]);
+translate([0, 100, 0])
+cube([30, 20, 0.2]);
+
+translate([0, -100, 0])
+cube([4, 5, 0.2]);
+translate([0, -120, 0])
+cube([30, 20, 0.2]);
