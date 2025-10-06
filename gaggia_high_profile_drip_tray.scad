@@ -125,22 +125,22 @@ support();
 translate([48.5+15, -90, 0])
 support();
 
-translate([124, 96, 0])
-cube([4, 5, 0.2]);
+translate([127, 96, 0])
+cube([1, 5, 0.2]);
 translate([100, 100, 0])
 cube([30, 20, 0.2]);
 
-translate([124, -100, 0])
-cube([4, 5, 0.2]);
+translate([127, -100, 0])
+cube([1, 5, 0.2]);
 translate([100, -120, 0])
 cube([30, 20, 0.2]);
 
 translate([0, 96, 0])
-cube([4, 5, 0.2]);
+cube([1, 5, 0.2]);
 translate([0, 100, 0])
 cube([30, 20, 0.2]);
 
 translate([0, -100, 0])
-cube([4, 5, 0.2]);
+cube([1, 5, 0.2]);
 translate([0, -120, 0])
 cube([30, 20, 0.2]);
