@@ -1,15 +1,15 @@
 $fn=50;
 
-include <./ikea_skadis_hookup.scad>
+include <./ikea_skadis_hookup.scad.fn>
 
 translate([0, 5, 15])
-cube([50, 10, 30], center = true);
+cube([70, 10, 30], center = true);
 
-translate([20, 9.999, 5])
-branch(10, 50, 25);
+translate([30, 9.999, 5])
+branch(10, 70, 25);
 
-translate([-20, 9.999, 5])
-branch(10, 50, 25);
+translate([-30, 9.999, 5])
+branch(10, 70, 25);
 
 module branch(x, y, z) {
   translate([0, 0, 5])
