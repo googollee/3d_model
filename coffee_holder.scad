@@ -45,11 +45,11 @@ difference() {
 
     translate([0, 0, 44.99])
     difference() {
-      linear_extrude(height=10)
+      linear_extrude(height=15)
       circle(d=25);
 
-      translate([0, 0, 5])
-      cylinder(h=10, r1=7, r2=4, center=true);
+      translate([0, 0, 7.5])
+      cylinder(h=15, r1=7.5, r2=4, center=true);
     }
   }
 
