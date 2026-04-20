@@ -25,20 +25,26 @@ max=1.6;
 translate([30, 0, 0])
 cube([5, 6, 5], center=true);
 for (diff=[-max:0.4:max]) {
-  translate([21, 1, diff])
-  cube([15, 4, 0.2], center=true);
+  for (y=[-0.6:0.4:2.8]) {
+    translate([21, y, diff])
+    cube([15, 0.2, 0.2], center=true);
+  }
 }
 
 translate([-30, 0, 0])
 cube([5, 6, 5], center=true);
 for (diff=[-max:0.4:max]) {
-  translate([-21, 0, diff])
-  cube([15, 6, 0.2], center=true);
+  for (y=[-2.8:0.4:2.8]) {
+    translate([-21, y, diff])
+    cube([15, 0.2, 0.2], center=true);
+  }
 }
 
 translate([16.5, -10, 0])
 cube([4.5, 6, 5], center=true);
 for (diff=[-max:0.4:max]) {
-  translate([16.5, -4, diff])
-  cube([4.5, 10, 0.2], center=true);
+  for (y=[14.6:0.4:18.8]) {
+    translate([y, -4, diff])
+    cube([0.2, 10, 0.2], center=true);
+  }
 }
