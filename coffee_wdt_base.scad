@@ -8,7 +8,7 @@ difference(){
       cylinder(h=5, d=82);
     }
 
-    cylinder(h=4, d=71);
+    cylinder(h=5, d=71);
 
     for (a = [0: 20: 360]) {
       rotate([0, 0, a])
@@ -26,7 +26,7 @@ difference(){
   }
 
   translate([0, 0, 13-4])
-  cylinder(h=4, d=71);
+  cylinder(h=4, d=73);
 }
 
 translate([70, 0, 0])
