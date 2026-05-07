@@ -5,8 +5,8 @@ difference(){
 union() {
 
 difference() {
-cylinder(h=13, d=81);
-cylinder(h=4, d=79);
+cylinder(h=13, d=85);
+cylinder(h=4, d=82);
 }
 
 cylinder(h=4, d=71);
@@ -28,5 +28,5 @@ cylinder(h=4, d=71);
 translate([70, 0, 0])
 cylinder(h=20, d=10);
 
-translate([55, 0, 5])
+translate([57, 0, 5])
 cube([30, 6, 10], center=true);
