@@ -4,8 +4,8 @@ difference(){
 
   union() {
     difference() {
-      cylinder(h=13, d=85);
-      cylinder(h=4, d=82);
+      cylinder(h=13, d=83);
+      cylinder(h=4, d=80);
     }
 
     cylinder(h=4, d=71);
@@ -13,7 +13,7 @@ difference(){
     for (a = [0: 20: 360]) {
       rotate([0, 0, a])
       translate([0, 0, 4])
-      cube([5, 84, 2], center=true);
+      cube([5, 82, 2], center=true);
     }
   }
 
