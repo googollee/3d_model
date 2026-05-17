@@ -3,17 +3,17 @@ $fn=50;
 rotate([90, 0, 0])
 difference() {
   translate([2, 0, 0])
-  cube([34, 5, 6], center=true);
+  cube([34, 5, 7], center=true);
 
-  translate([0, 0, -1])
-  linear_extrude(height=5, scale=[1.1, 1])
+  translate([0, 0, -2])
+  linear_extrude(height=6, scale=[1.1, 1])
   square([14, 6], center=true);
 
   translate([-10, 0, 3])
-  cylinder(h=3, d=3, center=true);
+  cylinder(h=3, d=3.3, center=true);
 
   translate([11, 0, 3])
-  cylinder(h=3, d=3, center=true);
+  cylinder(h=3, d=3.3, center=true);
 
   translate([19, 0, 2.75])
   rotate([0, 20, 0])
