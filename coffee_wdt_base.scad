@@ -8,14 +8,14 @@ difference(){
     difference() {
       cylinder(h=10, d=83);
       translate([0, 0, -1])
-      cylinder(h=4, d=80);
+      cylinder(h=6, d=80);
     }
 
-    cylinder(h=3, d=bottom_outer);
+    cylinder(h=5, d=bottom_outer);
 
     for (a = [0: 22.5: 360]) {
       rotate([0, 0, a])
-      translate([0, 0, 3])
+      translate([0, 0, 5])
       cube([5, 82, 2], center=true);
     }
   }
@@ -30,7 +30,7 @@ difference(){
   }
 
   translate([0, 0, 10-3])
-  cylinder(h=5, d=bottom_outer);
+  cylinder(h=10, d=bottom_outer);
 }
 
 translate([70, 0, 0])
