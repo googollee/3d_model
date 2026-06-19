@@ -16,14 +16,14 @@ difference() {
 
   translate([18, 0, 3.4])
   rotate([0, 20, 0])
-  cube([10, 6, 3], center=true);
+  cube([10, 6, 3.5], center=true);
 
-  translate([17, -0.5, 2.5])
+  translate([16.5, -0.5, 2.5])
   rotate([0, 0, -10])
-  cube([3, 1, 4], center=true);
+  cube([4, 1, 4], center=true);
 
   translate([18, 1, -1])
-  cube([2, 1, 3], center=true);
+  cube([5, 1, 3], center=true);
 
   translate([-15, 0, 0])
   cube([5, 1, 4], center=true);
