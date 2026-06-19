@@ -4,9 +4,9 @@ difference() {
   translate([2, 0, 0])
   cube([34, 5, 6], center=true);
 
-  translate([0, 0, -1])
-  linear_extrude(height=5, scale=[1.1, 1])
-  square([14, 6], center=true);
+  translate([0, 0, -1.5])
+  linear_extrude(height=5, scale=[1.05, 1])
+  square([14.5, 6], center=true);
 
   translate([-10, 0, 2.25])
   cylinder(h=2.5, d=3.4, center=true);
