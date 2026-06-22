@@ -1,22 +1,22 @@
 $fn=50;
 
 difference() {
-  translate([2, 0, 0])
-  cube([34, 5, 6], center=true);
+  translate([1, 0, 0])
+  cube([36, 6, 6], center=true);
 
-  translate([-1, 0, -1.5])
+  translate([0, 0, -1.5])
   linear_extrude(height=5, scale=[1.05, 1])
-  square([13.5, 6], center=true);
+  square([13.5, 7], center=true);
 
-  translate([-10, 0, 2.25])
+  translate([-11, 0, 2.25])
   cylinder(h=2.5, d=3.4, center=true);
 
-  translate([11, 0, 2.25])
+  translate([10.5, 0, 2.25])
   cylinder(h=2.5, d=3.4, center=true);
 
   translate([18, 0, 3.4])
   rotate([0, 20, 0])
-  cube([10, 6, 3.5], center=true);
+  cube([10, 7, 3.5], center=true);
 
   translate([16.5, -0.5, 2.5])
   rotate([0, 0, -10])
