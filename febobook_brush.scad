@@ -2,7 +2,7 @@ $fn=50;
 
 difference() {
   translate([1, 0, 0])
-  cube([36, 5.5, 6], center=true);
+  cube([36, 5.8, 6], center=true);
 
   translate([0, 0, -1.5])
   linear_extrude(height=5, scale=[1.05, 1])
