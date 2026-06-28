@@ -20,11 +20,11 @@ difference() {
 
   translate([16.5, -1, 2])
   rotate([0, 0, -10])
-  cube([4, 1, 7], center=true);
+  cube([4, 0.6, 7], center=true);
 
   translate([18, 1, -1])
-  cube([5, 1, 3], center=true);
+  cube([5, 0.6, 3], center=true);
 
   translate([-15, 0, 0])
-  cube([5, 1, 4], center=true);
+  cube([5, 0.6, 4], center=true);
 }
