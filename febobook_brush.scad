@@ -25,6 +25,6 @@ difference() {
   translate([18, 1, -1])
   cube([5, 0.6, 3], center=true);
 
-  translate([-15, 0, 0])
+  translate([-16, 0, 0])
   cube([5, 0.6, 4], center=true);
 }
