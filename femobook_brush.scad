@@ -9,10 +9,10 @@ difference() {
   square([13.5, 7], center=true);
 
   translate([-11, 0, 2.25])
-  cylinder(h=2.5, d=3.4, center=true);
+  cylinder(h=2.5, d=3.5, center=true);
 
   translate([10.5, 0, 2.25])
-  cylinder(h=2.5, d=3.4, center=true);
+  cylinder(h=2.5, d=3.5, center=true);
 
   translate([18, 0, 3.4])
   rotate([0, 20, 0])
@@ -23,7 +23,7 @@ difference() {
   cube([4, 1, 7], center=true);
 
   translate([18, 1, -1])
-  cube([5, 1, 3], center=true);
+  cube([7, 1, 3], center=true);
 
   translate([-16, 0, 0])
   cube([5, 1, 4], center=true);
