@@ -39,16 +39,19 @@ union() {
   }
 }
 
-translate([35, 0, 0])
+translate([23.5, 0, 0])
 union() {
   difference() {
     union() {
       translate([0, 2, 0])
       linear_extrude(height = 30)
-      square([169, 17], center=true);
-      
-      translate([-43, 0, 0])
+      square([192, 17], center=true);
+
+      translate([-31.5, 0, 0])
       cube([17, 50, 30]);
+
+      translate([-96, 0, 0])
+      cube([4.5, 44, 30]);
     }
 
     translate([45, 0, -0.5])
