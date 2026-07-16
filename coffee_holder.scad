@@ -58,7 +58,7 @@ union() {
     linear_extrude(height = 31, scale=[0.7,1])
     square([60, 3], center=true);
 
-    translate([-35, 2, -0.5])
+    translate([-55, 2, -0.5])
     linear_extrude(height = 31, scale=[0.7,1])
     square([60, 10], center=true);
   }
