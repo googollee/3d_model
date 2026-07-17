@@ -89,24 +89,24 @@ difference() {
 
   rotate(v=[0,0,1], a=90)
   union() {
-    translate([-20, -5, 10])
-    cube([40, 10, 30]);
+    translate([-20, -7, 10])
+    cube([40, 14, 35]);
 
-    translate([20, 0, 40])
+    translate([20, 0, 45])
     rotate(v=[0,1,0], a=-90)
     linear_extrude(height = 40)
-    polygon([[0,5], [0,-5], [5,0]]);
+    polygon([[0,7], [0,-7], [5,0]]);
   }
 
   rotate(v=[0,0,1], a=0)
   union() {
-    translate([-20, -5, 10])
-    cube([40, 10, 30]);
+    translate([-20, -7, 10])
+    cube([40, 14, 35]);
 
-    translate([20, 0, 40])
+    translate([20, 0, 45])
     rotate(v=[0,1,0], a=-90)
     linear_extrude(height = 40)
-    polygon([[0,5], [0,-5], [5,0]]);
+    polygon([[0,7], [0,-7], [5,0]]);
   }
 }
 
