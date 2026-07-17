@@ -88,20 +88,26 @@ difference() {
   cube([25, 5, 60]);
 
   rotate(v=[0,0,1], a=90)
-  translate([0, -5, 10])
-  cube([25, 10, 35]);
+  union() {
+    translate([-20, -5, 10])
+    cube([40, 10, 30]);
+
+    translate([20, 0, 40])
+    rotate(v=[0,1,0], a=-90)
+    linear_extrude(height = 40)
+    polygon([[0,5], [0,-5], [5,0]]);
+  }
 
   rotate(v=[0,0,1], a=0)
-  translate([0, -5, 10])
-  cube([25, 10, 35]);
+  union() {
+    translate([-20, -5, 10])
+    cube([40, 10, 30]);
 
-  rotate(v=[0,0,1], a=180)
-  translate([0, -5, 10])
-  cube([25, 10, 35]);
-
-  rotate(v=[0,0,1], a=270)
-  translate([0, -5, 10])
-  cube([25, 10, 35]);
+    translate([20, 0, 40])
+    rotate(v=[0,1,0], a=-90)
+    linear_extrude(height = 40)
+    polygon([[0,5], [0,-5], [5,0]]);
+  }
 }
 
 translate([69.5, 5.5, 0])
