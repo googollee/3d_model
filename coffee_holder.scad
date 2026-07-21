@@ -25,7 +25,7 @@ difference() {
 
 translate([0, -60, 0])
 union() {
-  linear_extrude(height = 5)
+  linear_extrude(height = 7)
   difference() {
     circle(d=69, $fn=200);
     circle(d=60, $fn=200);
@@ -33,8 +33,8 @@ union() {
 
   for (i=[45:90:360]) {
     rotate([0, 0, i])
-    translate([32, 0, 1])
-    linear_extrude(height = 5)
+    translate([32, 0, 6])
+    linear_extrude(height = 6)
     circle(d=2.5, $fn=200);
   }
 }
@@ -69,23 +69,23 @@ difference() {
   union() {
     linear_extrude(height=45)
     difference() {
-      circle(d=35);
-      circle(d=25);
+      circle(d=30);
+      circle(d=20);
     }
 
     translate([0, 0, 44.99])
     difference() {
       linear_extrude(height=15)
-      circle(d=35);
+      circle(d=30);
 
       translate([0, 0, 7.5])
-      cylinder(h=15, d1=25, d2=4, center=true);
+      cylinder(h=15, d1=20, d2=4, center=true);
     }
   }
 
   rotate(v=[0,0,1], a=90)
-  translate([0, -2.5, 0])
-  cube([25, 5, 60]);
+  translate([0, -2, 0])
+  cube([25, 4, 60]);
 
   rotate(v=[0,0,1], a=90)
   union() {
