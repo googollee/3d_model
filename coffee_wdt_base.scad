@@ -7,6 +7,7 @@ difference(){
   union() {
     difference() {
       cylinder(h=10, d=83);
+
       translate([0, 0, -1])
       cylinder(h=6, d=80);
     }
@@ -31,6 +32,14 @@ difference(){
 
   translate([0, 0, 10-3])
   cylinder(h=10, d=bottom_outer);
+}
+
+difference() {
+  translate([0, 0, 0])
+  cylinder(h=10, d=inner+1);
+  
+  translate([0, 0, -1])
+  cylinder(h=14, d=inner);
 }
 
 translate([70, 0, 0])
