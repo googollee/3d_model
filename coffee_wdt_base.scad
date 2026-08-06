@@ -1,5 +1,5 @@
 $fn=200;
-inner=61;
+inner=60;
 bottom_outer=71;
 
 difference(){
@@ -36,12 +36,20 @@ difference(){
 
 difference() {
   translate([0, 0, 0])
-  cylinder(h=10, d=inner+1);
+  cylinder(h=9, d=inner+1.5);
   
   translate([0, 0, -1])
   cylinder(h=14, d=inner);
 }
+/*
+difference() {
+  translate([0, 0, 10])
+  cylinder(h=2, d=inner+1);
 
+  translate([0, 0, 9])
+  cylinder(h=4, d=inner-6);
+}
+*/
 translate([70, 0, 0])
 cylinder(h=25, d=10);
 
