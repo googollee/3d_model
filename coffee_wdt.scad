@@ -1,10 +1,11 @@
 $fn=100;
 dosing_cup_outter = 60;
 filter_basket_inner = 58.5;
+thickness = 10;
 
-translate([dosing_cup_outter+10, 0, 0])
+translate([dosing_cup_outter+thickness+2, 0, 0])
 union() {
-  outter=dosing_cup_outter+5;
+  outter=dosing_cup_outter+thickness;
   inner=filter_basket_inner-1;
   thick=(outter-inner)/2;
 
@@ -17,12 +18,12 @@ union() {
   for (i=[0:120:360]) {
     rotate([0, 0, i+60])
     translate([inner/2+thick/2, 0, 6])
-    cylinder(d=1.8, h=3, center=true);
+    cylinder(d=2.6, h=3, center=true);
   }
 }
 
 difference() {
-  outter=dosing_cup_outter+5;
+  outter=dosing_cup_outter+thickness;
   inner=filter_basket_inner-1;
   thick=(outter-inner)/2;
 
@@ -35,13 +36,13 @@ difference() {
   for (i=[0:120:360]) {
     rotate([0, 0, i+60])
     translate([inner/2+thick/2, 0, 1.49])
-    cylinder(d=2, h=3, center=true);
+    cylinder(d=3, h=3, center=true);
   }
 }
 
 linear_extrude(height=13)
 difference() {
-  outter=filter_basket_inner-0.5;
+  outter=filter_basket_inner;
   inner=filter_basket_inner-1;
 
   circle(d=outter);
