@@ -68,6 +68,6 @@ difference() {
   for (i=[0:1:9]) {
     rotate([0, 0, i*120])
     translate([i*filter_basket_inner/19+2, 0, height])
-    cylinder(d=0.9, h=height, center=true);
+    cylinder(d=1.2, h=height, center=true);
   }
 }
