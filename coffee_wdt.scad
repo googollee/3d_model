@@ -6,7 +6,7 @@ thickness = 10;
 translate([dosing_cup_outter+thickness+2, 0, 0])
 union() {
   outter=dosing_cup_outter+thickness;
-  inner=filter_basket_inner-1;
+  inner=dosing_cup_outter;
   thick=(outter-inner)/2;
 
   linear_extrude(height=5)
@@ -15,26 +15,27 @@ union() {
     circle(d=inner);
   }
   
-  for (i=[0:120:360]) {
-    rotate([0, 0, i+60])
+  for (i=[0:90:360]) {
+    rotate([0, 0, i])
     translate([inner/2+thick/2, 0, 6])
-    cylinder(d=2.6, h=3, center=true);
+    cylinder(d=2.7, h=3, center=true);
   }
 }
 
 difference() {
   outter=dosing_cup_outter+thickness;
-  inner=filter_basket_inner-1;
-  thick=(outter-inner)/2;
+  filter_inner=filter_basket_inner-1;
+  inner=dosing_cup_outter;
+  thick=(outter-filter_inner)/2;
 
   linear_extrude(height=5)
   difference() {
     circle(d=outter);
-    circle(d=inner);
+    circle(d=filter_inner);
   }
   
-  for (i=[0:120:360]) {
-    rotate([0, 0, i+60])
+  for (i=[0:90:360]) {
+    rotate([0, 0, i])
     translate([inner/2+thick/2, 0, 1.49])
     cylinder(d=3, h=3, center=true);
   }
