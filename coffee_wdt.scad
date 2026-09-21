@@ -26,7 +26,7 @@ difference() {
   outter=dosing_cup_outter+thickness;
   filter_inner=filter_basket_inner-1;
   inner=dosing_cup_outter;
-  thick=(outter-filter_inner)/2;
+  thick=(outter-inner)/2;
 
   linear_extrude(height=5)
   difference() {
@@ -69,6 +69,6 @@ difference() {
   for (i=[0:1:9]) {
     rotate([0, 0, i*120])
     translate([i*filter_basket_inner/19+2, 0, height])
-    cylinder(d=1.8, h=height, center=true);
+    cylinder(d=1.7, h=height, center=true);
   }
 }
