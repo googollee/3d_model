@@ -215,8 +215,8 @@ module matter_label_2d(passcode, discriminator, vid = 0, pid = 0, flow = 0,
 
 // 3D：一块平板，图案凹刻在 z=0 的底面，从底部看是正读的
 module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
-                          rendezvous = 2, m = 1.2, text_size = 3.2, gap = 3,
-                          mask = 0, thickness = 2, depth = 0.6, margin = 4) {
+                          rendezvous = 2, m = 1.5, text_size = 3, gap = 1,
+                          mask = 0, thickness = 2, depth = 0.6, margin = 2) {
   qr_w = QN * m;
   plate_w = qr_w + 2 * margin;
   plate_h = qr_w + gap + text_size + 2 * margin;
