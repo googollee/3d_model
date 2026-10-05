@@ -213,22 +213,39 @@ module matter_label_2d(passcode, discriminator, vid = 0, pid = 0, flow = 0,
          halign = "center", valign = "center");
 }
 
-// 3D：一块平板，图案凹刻在 z=0 的底面，从底部看是正读的
+// 3D：一块平板，图案凹刻在 z=0 的底面，从底部看是正读的。
+// 单色打印机用换色实现黑白：整块分成三层，按颜色拆开，互不重叠
+//   z = 0 ~ depth                 白色，深色模块位置镂空（凹槽）
+//   z = depth ~ depth + dark_t    黑色，整层，作为凹槽的"顶"
+//   z = depth + dark_t ~ thickness 白色，外壳其余部分
+// 切片时（层高 0.2mm，外墙 2~3 圈，先外墙后填充）：
+//   黑色层（第 6 层）先用白色打完外墙，再手动插入 M600 换黑色打内部填充；
+//   在下一层（第 7 层）开始前再插入 M600 换回白色。
+//   这样外壳侧面是白色外墙，看不到黑线。黑色层只有一层（dark_t = 0.2）。
 module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
                           rendezvous = 2, m = 1.5, text_size = 3, gap = 1,
-                          mask = 0, thickness = 2, depth = 0.6, margin = 2) {
+                          mask = 0, thickness = 2, depth = 1.0, dark_t = 0.2,
+                          margin = 3) {
+  assert(thickness > depth + dark_t, "thickness 必须大于 depth + dark_t");
   qr_w = QN * m;
   plate_w = qr_w + 2 * margin;
   plate_h = qr_w + gap + text_size + 2 * margin;
   // 内容 y 范围：[-gap-text_size, qr_w]
-  difference() {
-    translate([-plate_w / 2, -gap - text_size - margin, 0])
-      cube([plate_w, plate_h, thickness]);
+  module slab(z0, z1)
+    translate([-plate_w / 2, -gap - text_size - margin, z0])
+      cube([plate_w, plate_h, z1 - z0]);
 
+  echo(str("黑色层 z=", depth, "~", depth + dark_t, "mm：该层外墙打完后 M600 换黑，",
+           "填充打完、下一层开始前 M600 换回白"));
+
+  color("white") difference() {
+    slab(0, depth);
     translate([0, 0, -0.01])
-      linear_extrude(depth + 0.01)
+      linear_extrude(depth + 0.02)
         mirror([1, 0, 0])   // 底面朝外，镜像后从下往上看才是正的
           matter_label_2d(passcode, discriminator, vid, pid, flow, rendezvous,
                           m, text_size, gap, mask);
   }
+  color("black") slab(depth, depth + dark_t);
+  color("white") slab(depth + dark_t, thickness);
 }
