@@ -28,7 +28,7 @@ difference() {
   inner=dosing_cup_outter;
   thick=(outter-inner)/2;
 
-  linear_extrude(height=5)
+  linear_extrude(height=18.5)
   difference() {
     circle(d=outter);
     circle(d=filter_inner);
@@ -41,7 +41,7 @@ difference() {
   }
 }
 
-linear_extrude(height=13)
+linear_extrude(height=25)
 difference() {
   outter=filter_basket_inner;
   inner=filter_basket_inner-1;
