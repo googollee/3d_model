@@ -268,8 +268,8 @@ module matter_label_2d(passcode, discriminator, vid = 0, pid = 0, flow = 0,
 // 打印面积会比二维码区域大 2 * (iso_gap + wall)，二维码和文字大小不变。
 module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
                           rendezvous = 2, m = 1.5, text_size = 4, gap = 1,
-                          mask = 0, thickness = 2, depth = 0.4, dark_t = 0.2,
-                          margin = 3, iso_gap = 1.2, wall = 1.6, float_gap = 0.1) {
+                          mask = 0, thickness = 2, depth = 0.6, dark_t = 0.2,
+                          margin = 3, iso_gap = 1.2, wall = 1.6, float_gap = 0.2) {
   assert(float_gap >= 0 && float_gap < depth, "float_gap 必须在 0 ~ depth 之间");
   assert(thickness > depth + dark_t, "thickness 必须大于 depth + dark_t");
   qr_w = QN * m;
