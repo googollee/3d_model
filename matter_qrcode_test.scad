@@ -263,11 +263,14 @@ module matter_label_2d(passcode, discriminator, vid = 0, pid = 0, flow = 0,
 // 一段连续的打印，只需在它前后各插入一次 M600（层高 0.2mm 时就是第 3 层）：
 //   白色外圈 → M600 换黑 → 黑色岛 → M600 换白 → 下一层。
 // 空隙在内部被上下白层封住，外面看不到；侧壁全程是白色，没有黑线。
+// float_gap：黑色岛下表面与下方白色面之间的悬空间隙（岛区域内白色顶面下降 float_gap，
+// 凹槽顶面仍是黑色岛）。注意 float_gap 小于层高时，切片软件会把它四舍五入掉。
 // 打印面积会比二维码区域大 2 * (iso_gap + wall)，二维码和文字大小不变。
 module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
                           rendezvous = 2, m = 1.5, text_size = 4, gap = 1,
                           mask = 0, thickness = 2, depth = 0.4, dark_t = 0.2,
-                          margin = 3, iso_gap = 1.2, wall = 1.6) {
+                          margin = 3, iso_gap = 1.2, wall = 1.6, float_gap = 0.1) {
+  assert(float_gap >= 0 && float_gap < depth, "float_gap 必须在 0 ~ depth 之间");
   assert(thickness > depth + dark_t, "thickness 必须大于 depth + dark_t");
   qr_w = QN * m;
   plate_w = qr_w + 2 * margin;
@@ -284,6 +287,9 @@ module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
 
   color("white") difference() {
     slab(0, depth, ext);
+    // 黑色岛正下方的白色顶面下降 float_gap，形成悬空间隙
+    // 范围比黑色岛每边多出 iso_gap / 2，避免凹陷边缘与岛的底边重合（非流形）
+    slab(depth - float_gap, depth + 0.01, iso_gap / 2);
     translate([0, 0, -0.01])
       linear_extrude(depth + 0.02)
         mirror([1, 0, 0])   // 底面朝外，镜像后从下往上看才是正的
