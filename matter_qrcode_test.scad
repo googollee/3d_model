@@ -200,46 +200,90 @@ module qr_2d(matrix, m = 1) {
       translate([c * m, (n - 1 - r) * m]) square(m + 0.01);
 }
 
+// 七段数码管风格的数字，自己用矩形拼，不依赖系统字体。
+// 左下角为原点，w×h 为字符框，t 为笔画宽度。段顺序 a b c d e f g：
+//   a 上横  b 右上竖  c 右下竖  d 下横  e 左下竖  f 左上竖  g 中横
+SEG7 = [[1,1,1,1,1,1,0], [0,1,1,0,0,0,0], [1,1,0,1,1,0,1], [1,1,1,1,0,0,1],
+        [0,1,1,0,0,1,1], [1,0,1,1,0,1,1], [1,0,1,1,1,1,1], [1,1,1,0,0,0,0],
+        [1,1,1,1,1,1,1], [1,1,1,1,0,1,1]];
+
+module seg7_digit(d, w, h, t) {
+  s = SEG7[d];
+  half = (h + t) / 2;   // 单侧竖笔的高度，上下两段在中横处重叠
+  if (s[0]) translate([0, h - t]) square([w, t]);
+  if (s[1]) translate([w - t, (h - t) / 2]) square([t, half]);
+  if (s[2]) translate([w - t, 0]) square([t, half]);
+  if (s[3]) square([w, t]);
+  if (s[4]) square([t, half]);
+  if (s[5]) translate([0, (h - t) / 2]) square([t, half]);
+  if (s[6]) translate([0, (h - t) / 2]) square([w, t]);
+}
+
+// 每个字符的前进距离：数字 w + sp，分隔符 "-" 用 dl + sp
+function seg7_adv(c, w, dl, sp) = c == "-" ? dl + sp : w + sp;
+function seg7_x(code, i, w, dl, sp) =
+  i == 0 ? 0 : sum([for (j = [0 : i - 1]) seg7_adv(code[j], w, dl, sp)]);
+function seg7_width(code, w, dl, sp) = seg7_x(code, len(code), w, dl, sp) - sp;
+
+// 以原点为水平中心、垂直中心绘制一串数字（含 "-"）
+module seg7_text(code, h, t, sp = 0.45) {
+  w = 0.55 * h;       // 字符宽度
+  dl = 0.4 * w;       // 分隔符长度
+  total = seg7_width(code, w, dl, sp);
+  translate([-total / 2, -h / 2])
+    for (i = [0 : len(code) - 1]) {
+      c = code[i];
+      translate([seg7_x(code, i, w, dl, sp), 0])
+        if (c == "-") translate([0, (h - t) / 2]) square([dl, t]);
+        else seg7_digit(search(c, "0123456789")[0], w, h, t);
+    }
+}
+
 // 2D：QR 居中于原点上方，配对码在其下方。可直接用于凹刻
+// text_size 为数字高度，seg_t 为笔画宽度（建议 ≥ 0.7，即 2 条挤出线）
 module matter_label_2d(passcode, discriminator, vid = 0, pid = 0, flow = 0,
-                       rendezvous = 2, m = 1.2, text_size = 3.2, gap = 3, mask = 0) {
+                       rendezvous = 2, m = 1.2, text_size = 4, gap = 3, mask = 0,
+                       seg_t = 0.7) {
   qr = qr_matrix(matter_qr_payload(passcode, discriminator, vid, pid, flow, rendezvous), mask);
   code = matter_manual_code_pretty(matter_manual_code(passcode, discriminator));
   w = len(qr) * m;
 
   translate([-w / 2, 0]) qr_2d(qr, m);
   translate([0, -gap - text_size / 2])
-    text(code, size = text_size, font = "Liberation Mono:style=Bold",
-         halign = "center", valign = "center");
+    seg7_text(code, text_size, seg_t);
 }
 
 // 3D：一块平板，图案凹刻在 z=0 的底面，从底部看是正读的。
-// 单色打印机用换色实现黑白：整块分成三层，按颜色拆开，互不重叠
-//   z = 0 ~ depth                 白色，深色模块位置镂空（凹槽）
-//   z = depth ~ depth + dark_t    黑色，整层，作为凹槽的"顶"
-//   z = depth + dark_t ~ thickness 白色，外壳其余部分
-// 切片时（层高 0.2mm，外墙 2~3 圈，先外墙后填充）：
-//   黑色层（第 6 层）先用白色打完外墙，再手动插入 M600 换黑色打内部填充；
-//   在下一层（第 7 层）开始前再插入 M600 换回白色。
-//   这样外壳侧面是白色外墙，看不到黑线。黑色层只有一层（dark_t = 0.2）。
+// 单色打印机用换色实现黑白：按颜色拆成互不重叠的几块
+//   z = 0 ~ depth                  白色整层，深色模块位置镂空（凹槽）
+//   z = depth ~ depth + dark_t     黑色"岛"（只覆盖二维码区域）
+//                                  + 白色外圈（外壳侧壁），两者之间留 iso_gap 的空隙
+//   z = depth + dark_t ~ thickness 白色整层，盖住空隙
+// 黑色岛与白色外圈在该层里是互相分离的两块，切片后黑色部分在 G-code 里是
+// 一段连续的打印，只需在它前后各插入一次 M600（层高 0.2mm 时就是第 3 层）：
+//   白色外圈 → M600 换黑 → 黑色岛 → M600 换白 → 下一层。
+// 空隙在内部被上下白层封住，外面看不到；侧壁全程是白色，没有黑线。
+// 打印面积会比二维码区域大 2 * (iso_gap + wall)，二维码和文字大小不变。
 module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
-                          rendezvous = 2, m = 1.5, text_size = 3, gap = 1,
-                          mask = 0, thickness = 2, depth = 1.0, dark_t = 0.2,
-                          margin = 3) {
+                          rendezvous = 2, m = 1.5, text_size = 4, gap = 1,
+                          mask = 0, thickness = 2, depth = 0.4, dark_t = 0.2,
+                          margin = 3, iso_gap = 1.2, wall = 1.6) {
   assert(thickness > depth + dark_t, "thickness 必须大于 depth + dark_t");
   qr_w = QN * m;
   plate_w = qr_w + 2 * margin;
   plate_h = qr_w + gap + text_size + 2 * margin;
-  // 内容 y 范围：[-gap-text_size, qr_w]
-  module slab(z0, z1)
-    translate([-plate_w / 2, -gap - text_size - margin, z0])
-      cube([plate_w, plate_h, z1 - z0]);
+  ext = iso_gap + wall;   // 外壳比黑色岛每边多出的宽度
+  // 内容 y 范围：[-gap-text_size, qr_w]；e 为相对黑色岛每边外扩的距离
+  module slab(z0, z1, e = 0)
+    translate([-plate_w / 2 - e, -gap - text_size - margin - e, z0])
+      cube([plate_w + 2 * e, plate_h + 2 * e, z1 - z0]);
 
-  echo(str("黑色层 z=", depth, "~", depth + dark_t, "mm：该层外墙打完后 M600 换黑，",
-           "填充打完、下一层开始前 M600 换回白"));
+  echo(str("黑色层 z=", depth, "~", depth + dark_t, "mm：白色外圈打完后 M600 换黑打黑色岛，",
+           "岛打完后 M600 换回白"));
+  echo(str("外壳尺寸 ", plate_w + 2 * ext, " x ", plate_h + 2 * ext, " mm"));
 
   color("white") difference() {
-    slab(0, depth);
+    slab(0, depth, ext);
     translate([0, 0, -0.01])
       linear_extrude(depth + 0.02)
         mirror([1, 0, 0])   // 底面朝外，镜像后从下往上看才是正的
@@ -247,5 +291,9 @@ module matter_label_plate(passcode, discriminator, vid = 0, pid = 0, flow = 0,
                           m, text_size, gap, mask);
   }
   color("black") slab(depth, depth + dark_t);
-  color("white") slab(depth + dark_t, thickness);
+  color("white") difference() {
+    slab(depth, depth + dark_t, ext);
+    slab(depth - 0.01, depth + dark_t + 0.01, iso_gap);
+  }
+  color("white") slab(depth + dark_t, thickness, ext);
 }
